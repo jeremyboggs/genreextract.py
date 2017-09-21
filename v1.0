@@ -1,0 +1,11 @@
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
+from bs4 import BeautifulSoup
+import csv
+
+for name in sys.argv[1:]:
+    soup = BeautifulSoup (open(name), "html.parser")
+    for tag_list in soup.find_all('div', class_='wk_thread_taglist'):
+        for tag in tag_list.find_all('a'):
+            print tag.contents[0]
